@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".StoryActivity">
+
+    <ImageView
+        android:id="@+id/storybg"
+        style="@style/Pictures"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/kirya" />
+
+    <TextView
+        android:id="@+id/storyTitle"
+        android:layout_width="match_parent"
+        style="@style/BlueBut"
+        android:text="@string/storyText"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/storybg" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:id="@+id/caseFirst"
+        style="@style/chooseBut"
+        android:text="@string/case1"
+        android:visibility="visible"
+        app:layout_constraintBottom_toTopOf="@+id/caseSecond"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/storyTitle"
+        tools:visibility="visible" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:id="@+id/caseSecond"
+        style="@style/chooseBut"
+        android:text="@string/case2"
+        android:visibility="visible"
+        app:layout_constraintBottom_toTopOf="@+id/caseThird"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/caseFirst"
+        tools:visibility="visible" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:id="@+id/caseThird"
+        style="@style/chooseBut"
+        android:text="@string/case3"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/caseSecond"
+        tools:visibility="visible" />
+
+</android.support.constraint.ConstraintLayout>

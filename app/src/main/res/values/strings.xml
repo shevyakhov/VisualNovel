@@ -1,0 +1,15 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="app_name">Visual novel</string>
+    <string name="titleName">Моя визуальная новелла</string>
+    <string name="ButtonText">Начать</string>
+    <string name="NameText">Привет! Меня зовут Кирюша. А тебя?</string>
+    <string name="confirmText">Подтвердить</string>
+    <string name="confirm">Подтвердить</string>
+    <string name="nameHint">Введите свое имя...</string>
+    <string name="case3">TextView</string>
+    <string name="case2">TextView</string>
+    <string name="case1">TextView</string>
+    <string name="storyText">TextView</string>
+    <string name="EndText">Спасибо, что поиграли!</string>
+    <string name="endBut">Пройти еще раз</string>
+</resources>

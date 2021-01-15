@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".NameActivity">
+
+    <ImageView
+        android:id="@+id/backgr"
+        style="@style/Pictures"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/kirya"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/NameHeader"
+        style="@style/BlueBut"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/NameText"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/backgr" />
+
+    <EditText
+        android:id="@+id/personName"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:background="@color/lightGray"
+        android:ems="10"
+
+        android:hint="@string/nameHint"
+        android:importantForAutofill="no"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toTopOf="@+id/confirmBut"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/NameHeader" />
+
+    <Button
+        android:id="@+id/confirmBut"
+        style="@style/BlueBut"
+        android:text="@string/confirm"
+        android:layout_width="match_parent"
+        app:layout_constraintBottom_toBottomOf="@+id/backgr"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/NameHeader" />
+
+</android.support.constraint.ConstraintLayout>
