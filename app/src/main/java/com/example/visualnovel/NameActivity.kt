@@ -14,11 +14,11 @@ class NameActivity : AppCompatActivity() {
             if (personName.text.toString().isNotEmpty()) {
                 val username = personName.text.toString()
                 intent = Intent(this, StoryActivity::class.java)
-                intent.putExtra("username", username)
+                intent.putExtra(USERNAME, username)
+                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
                 startActivity(intent)
-            }
-            else{
-                Toast.makeText(this, "Имя не может быть пустым", Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(this, getString(R.string.toastText), Toast.LENGTH_SHORT).show()
 
             }
         }

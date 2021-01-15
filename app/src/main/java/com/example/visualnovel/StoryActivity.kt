@@ -10,14 +10,17 @@ import android.widget.ImageView
 import kotlinx.android.synthetic.main.activity_story.*
 
 class StoryActivity : AppCompatActivity() {
+    var currentSlide = 0 //номер слайда 0 по умолчанию
+
+    //получение имени
+    val nameIntent = intent
+    val getName = nameIntent.getStringExtra(USERNAME)
+    val FirstBtnIndex = 0
+    val SecondBtnIndex = 1
+    val ThirdBtnIndex = 2
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_story)
-
-        var currentSlide = 0 //номер слайда 0 по умолчанию
-        //получение имени
-        val nameIntent = intent
-        val getName = nameIntent.getStringExtra("username")
         //сюжетные ссылки с поправкой на номера(теперь отсчет не с 3 экрана а с 0)
 
 
@@ -34,6 +37,7 @@ class StoryActivity : AppCompatActivity() {
             arrayOf(-1),
             arrayOf(-1)
         )
+
         // сюжетные кнопки
         val plotBut = arrayOf(
             arrayOf("Пойдем на пробежку", "Пойдем в поход", "Погуляем по полю"),
@@ -85,62 +89,52 @@ class StoryActivity : AppCompatActivity() {
             when (nextSlides[currentSlide].size) {
                 1 -> {
                     caseFirst.text = plotBut[currentSlide][0]
+                    caseSecond.visibility = View.INVISIBLE
+                    caseThird.visibility = View.INVISIBLE
                 }
                 2 -> {
                     caseFirst.text = plotBut[currentSlide][0]
                     caseSecond.text = plotBut[currentSlide][1]
+                    caseSecond.visibility = View.VISIBLE
+                    caseThird.visibility = View.INVISIBLE
                 }
                 3 -> {
                     caseFirst.text = plotBut[currentSlide][0]
                     caseSecond.text = plotBut[currentSlide][1]
                     caseThird.text = plotBut[currentSlide][2]
+                    caseSecond.visibility = View.VISIBLE
+                    caseThird.visibility = View.VISIBLE
                 }
             }
         }
 
-        //функия скрытия(да\нет) кнопок
-        fun toShow() {
-            when (nextSlides[currentSlide].size) {
-                3 -> {
-                    caseSecond.visibility = View.VISIBLE
-                    caseThird.visibility = View.VISIBLE
-                }
-                2 -> {
-                    caseSecond.visibility = View.VISIBLE
-                    caseThird.visibility = View.INVISIBLE
-                }
-                else -> {
-                    caseSecond.visibility = View.INVISIBLE
-                    caseThird.visibility = View.INVISIBLE
-                }
-            }
+
+        fun getItDone(index: Int) {
+            currentSlide = nextSlides[currentSlide][index]
+            switchContent()
         }
         //дефолтное отображение
         switchContent()
 
         //обработчики нажатий
         caseFirst.setOnClickListener {
-
-            if (nextSlides[currentSlide][0] == -1) {
-                intent = Intent(this, EndActivity::class.java)
-                startActivity(intent)
-            } else {
-                currentSlide = nextSlides[currentSlide][0]
-                switchContent()
-                toShow()
-
-            }
+            getItDone(FirstBtnIndex)
         }
         caseSecond.setOnClickListener {
-            currentSlide = nextSlides[currentSlide][1]
-            switchContent()
-            toShow()
+            if (nextSlides[currentSlide][0] == -1) {
+                intent = Intent(this, EndActivity::class.java)
+                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+                startActivity(intent)
+
+            } else {
+                getItDone(SecondBtnIndex)
+            }
+
         }
         caseThird.setOnClickListener {
-            currentSlide = nextSlides[currentSlide][2]
-            switchContent()
-            toShow()
+            getItDone(ThirdBtnIndex)
         }
+
 
     }
 }
