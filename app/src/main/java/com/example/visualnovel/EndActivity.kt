@@ -14,6 +14,7 @@ class EndActivity : AppCompatActivity() {
         intent = Intent(this,MainActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
         startActivity(intent)
+            finish()
         }
     }
 }

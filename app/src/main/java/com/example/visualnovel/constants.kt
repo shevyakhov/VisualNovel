@@ -1,3 +1,2 @@
 package com.example.visualnovel
-
-val USERNAME = "username"
+const val USERNAME = "username"

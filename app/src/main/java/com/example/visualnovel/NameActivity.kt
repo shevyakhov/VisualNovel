@@ -17,6 +17,7 @@ class NameActivity : AppCompatActivity() {
                 intent.putExtra(USERNAME, username)
                 intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
                 startActivity(intent)
+                finish()
             } else {
                 Toast.makeText(this, getString(R.string.toastText), Toast.LENGTH_SHORT).show()
 

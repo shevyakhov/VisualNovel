@@ -7,9 +7,16 @@ import android.view.View
 import kotlinx.android.synthetic.main.activity_story.*
 
 class StoryActivity : AppCompatActivity() {
-    var ThisSlide = QuestRepository().getQuestionById(0)
+  private var thisSlide = QuestRepository().getQuestionById(0)
     //получение имени
+    private fun insertName(name:String) {
+        storyTitle.text = storyTitle.text.replaceRange(
+            storyTitle.text.lastIndexOf('$'),
+            storyTitle.text.lastIndexOf('$') + 1,
+            name
+        )
 
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_story)
@@ -17,37 +24,27 @@ class StoryActivity : AppCompatActivity() {
         val nameIntent = intent
         val getName = nameIntent.getStringExtra(USERNAME)
 
-        fun insertName() {
-            if (getName != null) {
-                storyTitle.text = storyTitle.text.replaceRange(
-                    storyTitle.text.lastIndexOf('$'),
-                    storyTitle.text.lastIndexOf('$') + 1,
-                    getName
-                )
-            }
-
-        }
 
         fun switchContent() {
-            storyTitle.text = getString(ThisSlide.TitleText)
-            storybg.setImageResource(ThisSlide.backgr)
+            storyTitle.text = getString(thisSlide.TitleText)
+            storybg.setImageResource(thisSlide.backgr)
 
-            when (ThisSlide.someAnswers.size) {
+            when (thisSlide.someAnswers.size) {
                 1 -> {
-                    caseSecond.text = getString(ThisSlide.someAnswers[0].text)
+                    caseSecond.text = getString(thisSlide.someAnswers[0].text)
                     caseThird.visibility = View.INVISIBLE
                     caseFirst.visibility = View.INVISIBLE
 
                 }
                 2 -> {
-                    caseSecond.text = getString(ThisSlide.someAnswers[0].text)
-                    caseThird.text = getString(ThisSlide.someAnswers[1].text)
+                    caseSecond.text = getString(thisSlide.someAnswers[0].text)
+                    caseThird.text = getString(thisSlide.someAnswers[1].text)
                     caseFirst.visibility = View.INVISIBLE
                 }
                 3 -> {
-                    caseFirst.text = getString(ThisSlide.someAnswers[0].text)
-                    caseSecond.text = getString(ThisSlide.someAnswers[1].text)
-                    caseThird.text = getString(ThisSlide.someAnswers[2].text)
+                    caseFirst.text = getString(thisSlide.someAnswers[0].text)
+                    caseSecond.text = getString(thisSlide.someAnswers[1].text)
+                    caseThird.text = getString(thisSlide.someAnswers[2].text)
                     caseSecond.visibility = View.VISIBLE
                     caseThird.visibility = View.VISIBLE
                     caseFirst.visibility = View.VISIBLE
@@ -57,36 +54,37 @@ class StoryActivity : AppCompatActivity() {
 
 
         fun getItDone(index: Int) {
-            ThisSlide = QuestRepository().getQuestionById(index)
+            thisSlide = QuestRepository().getQuestionById(index)
             switchContent()
         }
 
         //дефолтное отображение
         switchContent()
-        insertName()
+        insertName(getName.toString())
 
         //обработчики нажатий
 
         caseFirst.setOnClickListener {
-            getItDone(ThisSlide.someAnswers[0].nextid)
+            getItDone(thisSlide.someAnswers[0].nextid)
         }
 
         caseSecond.setOnClickListener {
-            when (ThisSlide.someAnswers.size) {
+            when (thisSlide.someAnswers.size) {
                 1 -> {
                     intent = Intent(this, EndActivity::class.java)
                     intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
                     startActivity(intent)
+                    finish()
                 }
-                2 -> getItDone(ThisSlide.someAnswers[0].nextid)
-                3 -> getItDone(ThisSlide.someAnswers[1].nextid)
+                2 -> getItDone(thisSlide.someAnswers[0].nextid)
+                3 -> getItDone(thisSlide.someAnswers[1].nextid)
             }
 
         }
         caseThird.setOnClickListener {
-            when (ThisSlide.someAnswers.size) {
-                2 -> getItDone(ThisSlide.someAnswers[1].nextid)
-                3 -> getItDone(ThisSlide.someAnswers[2].nextid)
+            when (thisSlide.someAnswers.size) {
+                2 -> getItDone(thisSlide.someAnswers[1].nextid)
+                3 -> getItDone(thisSlide.someAnswers[2].nextid)
             }
 
         }
